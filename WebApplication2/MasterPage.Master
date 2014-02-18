@@ -1,0 +1,136 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="WebStore.MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<script runat="server">
+    
+    void upDynamicClock_OnLoad(Object sender, System.EventArgs e)
+    {
+        lblDynamicClock.Text = DateTime.Now.ToShortTimeString();
+    }
+</script>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T R I N I T Y&nbsp;&nbsp;&nbsp C O M P U T E R S</title>
+    
+    <script type="text/javascript" language="JavaScript">
+        function DisplayDynamicClock() 
+        {
+            setInterval("__doPostBack('upDynamicClock', '');", 1000);
+        }
+        window.onload = DisplayDynamicClock;
+    </script>
+
+    <link rel="Stylesheet" href="Styles/site.css" type="text/css" />
+    <link rel="icon" type="image/png" href="http://example.com/myicon.png"/>
+ 
+    <script language="JavaScript">
+        loadImage1 = new Image();
+        loadImage1.src = "http://imageshack.com/a/img580/9499/mnyh.jpg";
+        staticImage1 = new Image();
+        staticImage1.src = "http://imageshack.com/a/img827/606/cbqv.jpg";
+        loadImage2 = new Image();
+        loadImage2.src = "b21.jpg";
+        staticImage2 = new Image();
+        staticImage2.src = "b2.jpg";
+        loadImage3 = new Image();
+        loadImage3.src = "b31.jpg";
+        staticImage3 = new Image();
+        staticImage3.src = "b3.jpg";
+
+    </script>
+            
+
+</head>
+
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <table style="width: 1024px; height: 1200px; border: 0">
+            <tr>
+            <td colspan="4" id="toplinks" style="text-align:right">
+                Hello, 
+                <a id="linkUserpage" runat="server" href="_user.aspx">
+                <asp:Label ID="LabelUsername" runat="server" Text="guest" 
+                ForeColor="#F00000"></asp:Label></a>
+                &nbsp;| 
+                <asp:LoginStatus ID="LoginStatus1" runat="server" ForeColor="#999999" 
+                    onloggedout="LoginStatus1_LoggedOut" BorderStyle="None" />
+                &nbsp;|  
+                Cart: 
+                <a href="_cart.aspx"><asp:Label ID="LabelSum" runat="server" Text="user" ForeColor="#f00000">0.00£
+                </asp:Label></a>  
+                 &nbsp; &nbsp; 
+            </td></tr>
+            <tr>
+                <td colspan="4" id="header" class="style2">
+                    <img src="http://imageshack.com/a/img571/3230/9p02.jpg" alt="trinity computers" /></td>
+            </tr>
+            <tr>
+                <td id="menu" rowspan="3">
+                    <asp:ScriptManager ID="smDynamicClock" runat="server" />
+                    <asp:UpdatePanel runat="server" ID="upDynamicClock" OnLoad="upDynamicClock_OnLoad">
+                        <ContentTemplate>
+                        <center> <asp:Label ForeColor="Red" runat="server" ID="lblDynamicClock" /> </center>
+                           
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                    <br />
+                    <br />
+                    <h1>Products</h1>
+                    <a href="../mother.aspx">Motherboards</a>
+                    <a href="cpu.aspx">CPUs</a>
+                    <a href="graphics.aspx">Graphics Cards</a>
+                    <a href="ram.aspx">Memory</a>
+                    <a href="sound.aspx">Sound Cards</a>
+                    <a href="hdd.aspx">Hard Drives</a>
+                    <a href="dvd.aspx">DVD player</a>
+                    <a href="power.aspx">Power Supplies</a>
+                        <br />
+                    <h1>Services</h1>
+                    <a href="_Compara.aspx">Compare</a>                                   
+                    <a href="_configurator.aspx">Configurator</a>
+                    </td>
+            
+                <td class="navigate" style="height: 3%;">
+                    <a href="home.aspx" onMouseOver="image1.src=loadImage1.src;" onMouseOut="image1.src=staticImage1.src;"><img name="image1" src="http://imageshack.com/a/img827/606/cbqv.jpg" border=0 /></a></td>
+                <td class="navigate" style="height: 3%;">
+                    &nbsp;</td>
+                <td class="navigate" style="height: 3%;">
+                    <asp:Button ID="Button1" runat="server" Text="S E A R C H" onclick="Button1_Click" 
+                        CssClass="submitButton" ForeColor="#CC0000" Font-Bold="True" 
+                        Font-Size="Smaller" Width="80px" />
+                    &nbsp;&nbsp;
+                     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td style="height:8%;" id="search" colspan="3">
+                    &nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+            </tr>
+            <tr>
+                <td id="content" colspan="3" rowspan="2">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+            <tr>
+                <td id="calendar">
+                    <asp:Calendar ID="Calendar1" runat="server">
+                    </asp:Calendar>
+                    </td>
+            </tr>
+            <tr>
+                <td colspan="4" id="footer">
+                    Sas Madalina || Dumitru Alexandra</td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</body>
+</html>
