@@ -26,7 +26,7 @@
 
 <div id="Content1" style="height:700px;">
 
-    <asp:AccessDataSource ID="AccessDataSource1" runat="server" DataFile="Z:\\info\\PROJECTS\\trinity_web\\WebApplication2\\baza.mdb" 
+    <asp:AccessDataSource ID="AccessDataSource1" runat="server" DataFile="baza.mdb" 
         SelectCommand="SELECT * FROM [PlacaVideo]"></asp:AccessDataSource>
     <asp:PlaceHolder ID="MainPlaceHolder" runat="server">
     <table style="width:100%; text-align:center;">

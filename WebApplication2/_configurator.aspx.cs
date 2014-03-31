@@ -118,7 +118,7 @@ namespace WebStore
                 Processor cpu = new Processor(item);
                 item = currentCart.getObject(20 + v[2]);
                 Motherboard mother = new Motherboard(item);
-                if (!cpu.compatibilitate(mother))
+                if (!cpu.compatibility(mother))
                     return false;
             }
             if (k >= 5)
@@ -128,16 +128,16 @@ namespace WebStore
                 RAM ram = new RAM(item);
                 item = currentCart.getObject(20 + v[2]);
                 Motherboard mother = new Motherboard(item);
-                if (!ram.compatibilitate(mother))
+                if (!ram.compatibility(mother))
                     return false;
             }
             if (k >= 6)
             {
                 item = currentCart.getObject(60 + v[6]);
-                PlacaVideo vid = new PlacaVideo(item);
+                GraphicsCard vid = new GraphicsCard(item);
                 item = currentCart.getObject(20 + v[2]);
                 Motherboard mother = new Motherboard(item);
-                if (!vid.compatibilitate(mother))
+                if (!vid.compatibility(mother))
                     return false;
             }
             return true;

@@ -79,7 +79,7 @@
     </asp:CreateUserWizard>
 
         <asp:AccessDataSource ID="AccessDataSource1" runat="server" 
-            DataFile="Z:\\info\\PROJECTS\\trinity_web\\WebApplication2\\baza.mdb" 
+            DataFile="baza.mdb" 
             DeleteCommand="DELETE FROM [User] WHERE [Username] = ?" 
             InsertCommand="INSERT INTO [User] (Username, [Password], Email, Current_cart) VALUES (?, ?, ?, ?)" 
             SelectCommand="SELECT * FROM [User]" 

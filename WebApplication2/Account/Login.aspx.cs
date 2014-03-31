@@ -27,7 +27,7 @@ namespace WebStore.Account
         private bool UserLogin(string user, string pass)
         {
 
-            OleDbConnection conn = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=Z:\\info\\PROJECTS\\trinity_web\\WebApplication2\\baza.mdb");
+            OleDbConnection conn = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=baza.mdb");
 
             OleDbCommand select = new OleDbCommand("SELECT * FROM [User] WHERE [Username] = @Username AND [Password] = @Password", conn);
             select.Parameters.AddWithValue("@Username", user);

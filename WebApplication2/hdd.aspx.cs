@@ -11,7 +11,7 @@ namespace WebStore
     public partial class hdd : System.Web.UI.Page
     {
 
-        Stocare[] p = new Stocare[10];
+        Storage[] p = new Storage[10];
         Cart currentCart;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -37,7 +37,7 @@ namespace WebStore
                     string[] item = new string[15];
                     for (int j = 0; j < dr.FieldCount; j++)
                         item[j] = dr[j].ToString();
-                    p[i] = new Stocare(item);
+                    p[i] = new Storage(item);
 
                     Label l = new Label();
                     l = new Label();

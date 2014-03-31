@@ -12,7 +12,7 @@ namespace WebStore
     {
         Cart currentCart;
 
-        string[] pages = new string[9] { "", "cpu.aspx", "mother.aspx", "video.aspx", "surse.aspx", "ram.aspx", "video.aspx", "dvd.aspx", "stocare.aspx" };
+        string[] pages = new string[8] { "", "cpu.aspx", "mother.aspx", "graphics.aspx", "power.aspx", "ram.aspx", "video.aspx", "hdd.aspx" };
 
         AccessDataSource a;
         string select = "SELECT * FROM ";
@@ -39,7 +39,7 @@ namespace WebStore
 
         void searchInTables(string tableName)
         {
-            a = new AccessDataSource("Z:\\info\\PROJECTS\\trinity_web\\WebApplication2\\baza.mdb", select + tableName);
+            a = new AccessDataSource("baza.mdb", select + tableName);
             DataView dv = new DataView();
             dv = (DataView)a.Select(DataSourceSelectArguments.Empty);
             DataTable dt = dv.ToTable();

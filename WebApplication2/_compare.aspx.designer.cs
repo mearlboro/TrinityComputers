@@ -10,7 +10,7 @@
 namespace WebStore {
     
     
-    public partial class _Compare {
+    public partial class _compare {
         
         /// <summary>
         /// DropDownList1 control.

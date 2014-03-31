@@ -12,42 +12,18 @@ namespace WebStore
 
     public class Hardware
     {
-        private int id;
         public int ID
-        {
-            get { return id; }
-            set { id = value; }
-        }
-        private string manufacturer;
+        { get; set; }
         public string Manufacturer
-        {
-            get { return manufacturer; }
-            set { manufacturer = value; }
-        }
-        private string series;
+        { get; set; }
         public string Series
-        {
-            get { return series; }
-            set { series = value; }
-        }
-        private float price;
+        { get; set; }
         public float Price
-        {
-            get { return price; }
-            set { price = value; }
-        }
-        private int stock;
+        { get; set; }
         public int Stock
-        {
-            get { return stock; }
-            set { stock = value; }
-        }
-        private int warranty;
+        { get; set; }
         public int Warranty
-        {
-            get { return warranty; }
-            set { warranty = value; }
-        }
+        { get; set; }
 
         public Hardware()
         { }
@@ -64,46 +40,36 @@ namespace WebStore
 
         public void display(Label l)
         {
-            l.Text = Manufacturer + " " + Series + "<br/>Price: " + Price + " £<br/>Warranty: " + Warranty + " months<br/>";
+            l.Text = Manufacturer + " " + Series + "<br/>";
         }
 
-        public int compare(Hardware p)
+        public void displayPrice(Label l)
         {
-            if (p.Price <Price)
-                return 1;
-            else if (p.Price > Price)
-                return 2;
-            else return 0;
+            l.Text += "Warranty: " + Warranty + " months<br/><br/><b>Price: " + Price / 5.2f + " £</b><br/><br/><br/><br/>";
         }
+
     };
+
+
+    public class HardwareException : Exception
+    {
+        public HardwareException()
+        { }
+
+        public HardwareException(string message) : base(message)
+        { }
+    }
+
 
 
     public class Processor : Hardware //COD 1-
     {
-        private string name;
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-        private float frecventa;
-        public float Frecventa
-        {
-            get { return frecventa; }
-            set { frecventa = value; }
-        }
-        private string socket;
+        public float Frequency
+        { get; set; }
         public string Socket
-        {
-            get { return socket; }
-            set { socket = value; }
-        }
-        private int nuclee;
-        public int Nuclee
-        {
-            get { return nuclee; }
-            set { nuclee = value; }
-        }
+        { get; set; }
+        public int Cores
+        { get; set; }
 
         public Processor()
         { }
@@ -116,85 +82,61 @@ namespace WebStore
             Price = float.Parse(item[3]);
             Stock = int.Parse(item[4]);
             Warranty = int.Parse(item[5]);
-            Name = item[6];
-            Frecventa = float.Parse(item[7]);
-            Socket = item[8];
-            Nuclee = int.Parse(item[9]);
+            Frequency = float.Parse(item[6]);
+            Socket = item[7];
+            Cores = int.Parse(item[8]);
         }
 
         public void show(Label l)
         {
-            l.Text = Manufacturer + " " + Name + " " + Series + "<br/>Price: " + Price + " £<br/>Warranty " + Warranty + " months<br/>" + Nuclee + " cores, " + Frecventa + "MHz<br/>Socket: " + Socket + "<br/><br/><br/><br/>";
+            l.Text = "";
+            display(l);
+            l.Text += Cores + " cores, " + Frequency + "MHz<br/>Socket: " + Socket +"<br/>";
+            displayPrice(l);
         }
 
-        public bool compatibilitate(Motherboard placa)
+        public bool compatibility(Motherboard mother)
         {
-            if (placa.SocketProcesor == Socket)
+            if (mother.SocketCPU == Socket)
                 return true;
             return false;
         }
 
-         public int Compare(Processor p)
+         public int compareTo(Object m)
         {
-            float a = p.Frecventa * p.Nuclee;
-            float b = Frecventa * Nuclee;
-            if (a < b)
-                return 1;
-            else if (a > b) return 2;
-            else return 0;
+            if (m is Processor)
+            {
+                Processor c = (Processor)m;
+                float b = c.Frequency * c.Cores / c.Price;
+                float a = Frequency * Cores / Price;
+                if (a < b)
+                    return -1;
+                else if (a > b) return 1;
+                else return 0;
+            }
+            else throw new HardwareException("Illegal Comparison");
         }
     };
 
+
     public class Motherboard : Hardware //COD 2-
     {
-        private string socketProcesor;
-        public string SocketProcesor
-        {
-            get { return socketProcesor; }
-            set { socketProcesor = value; }
-        }
-        private string slotVideo;
-        public string SlotVideo
-        {
-            get { return slotVideo; }
-            set { slotVideo = value; }
-        }
-        private string memorieSuportata;
-        public string MemorieSuportata
-        {
-            get { return memorieSuportata; }
-            set { memorieSuportata = value; }
-        }
-        private int sloturiRAM;
-        public int SloturiRAM
-        {
-            get { return sloturiRAM; }
-            set { sloturiRAM = value; }
-        }
-        private int porturiUSB;
+        public string SocketCPU
+        { get; set; }
+        public string SocketGPU
+        { get; set; }
+        public string SupportedMemory
+        { get; set; }
+        public int MemorySlots
+        { get; set; }
         public int PorturiUSB
-        {
-            get { return porturiUSB; }
-            set { porturiUSB = value; }
-        }
-        private bool videoIntegrat;
+        { get; set; }
         public bool VideoIntegrat
-        {
-            get { return videoIntegrat; }
-            set { videoIntegrat = value; }
-        }
-        private bool audioIntegrat;
+        { get; set; }
         public bool AudioIntegrat
-        {
-            get { return audioIntegrat; }
-            set { audioIntegrat = value; }
-        }
-        private bool lANIntegrat;
+        { get; set; }
         public bool LANIntegrat
-        {
-            get { return lANIntegrat; }
-            set { lANIntegrat = value; }
-        }
+        { get; set; }
 
         public Motherboard()
         { }
@@ -207,43 +149,45 @@ namespace WebStore
             Stock = int.Parse(item[4]);
             Warranty = int.Parse(item[5]);
             
-            SocketProcesor = item[6];
-            SlotVideo = item[7];
-            MemorieSuportata = item[8];
-            SloturiRAM = int.Parse(item[9]);
+            SocketCPU = item[6];
+            SocketGPU = item[7];
+            SupportedMemory = item[8];
+            MemorySlots = int.Parse(item[9]);
             PorturiUSB = int.Parse(item[10]);
             VideoIntegrat = bool.Parse(item[11]);
             AudioIntegrat = bool.Parse(item[12]);
             LANIntegrat = bool.Parse(item[13]);
         }
+
         public void show(Label l)
         {
-            l.Text = Manufacturer + " " + Series + "<br/>Price: " + Price + " £<br/>Warranty " + Warranty + " months <br/>Socket: " + SocketProcesor + "<br/>" + "GPU Slot: " + SlotVideo + "<br/>RAM: " + SloturiRAM + " slots, " + MemorieSuportata + "<br/>" + PorturiUSB + " USB ports<br/><br/>"; 
+            l.Text = "";
+            display(l);
+            l.Text += "Socket: " + SocketCPU + "<br/>" + "GPU Slot: " + SocketGPU + "<br/>RAM: " + MemorySlots + " slots, " + SupportedMemory + "<br/>" + PorturiUSB + " USB ports<br/><br/>";
+            displayPrice(l);
         }
 
-        public int Compare(Motherboard p)
+        public int compareTo(Object m)
         {
-            if (SloturiRAM > p.SloturiRAM)
-                return 1;
-            else if (SloturiRAM < p.SloturiRAM) return 2;
-            else return 0;
+            if (m is Motherboard)
+            {
+                Motherboard c = (Motherboard)m;
+                float b = c.MemorySlots * c.PorturiUSB / c.Price; //object to Compare with
+                float a = MemorySlots * PorturiUSB / Price;       //this
+                if (a < b)
+                    return -1;
+                else if (a > b) return 1;
+                else return 0;
+            }
+            else throw new HardwareException("Illegal Comparison");
         }
+        
     };
 
     public class SoundCard : Hardware //COD 3-
     {
-        private string nume;
-        public string Nume
-        {
-            get { return nume; }
-            set { nume = value; }
-        }
-        private int rezolutieAudio;
-        public int RezolutieAudio
-        {
-            get { return rezolutieAudio; }
-            set { rezolutieAudio = value; }
-        }
+        public int Resolution
+        { get; set; }
 
         public SoundCard()
         { }
@@ -255,37 +199,39 @@ namespace WebStore
             Price = float.Parse(item[3]);
             Stock = int.Parse(item[4]);
             Warranty = int.Parse(item[5]);
-            Nume = item[6];
-            RezolutieAudio = int.Parse(item[7]);
+            Resolution = int.Parse(item[6]);
         }
 
         public void show(Label l)
         {
-            l.Text = Manufacturer + " " + Nume + " " + Series + "<br/>Price: " + Price + " £<br/>Warranty " + Warranty + " months<br/>Rezolution: " + RezolutieAudio + "bits<br/><br/><br/><br/>";
+            l.Text = "";
+            display(l);
+            l.Text += "Audio Resolution: " + Resolution + "<br/>";
+            displayPrice(l);
         }
-        public int Compare(SoundCard p)
+
+        public int compareTo(Object m)
         {
-            if (RezolutieAudio > p.RezolutieAudio)
-                return 1;
-            else if (RezolutieAudio < p.RezolutieAudio) return 2;
-            else return 0;
+            if (m is SoundCard)
+            {
+                SoundCard c = (SoundCard)m;
+                float b = c.Resolution / c.Price; 
+                float a = Resolution / Price;
+                if (a < b)
+                    return -1;
+                else if (a > b) return 1;
+                else return 0;
+            }
+            else throw new HardwareException("Illegal Comparison");
         }
     }
 
     public class PowerSupplyUnit : Hardware//COD 4-
     {
-        private float putere;
-        public float Putere
-        {
-            get { return putere; }
-            set { putere = value; }
-        }
-        private int numarVentilatoare;
-        public int NumarVentilatoare
-        {
-            get { return numarVentilatoare; }
-            set { numarVentilatoare = value; }
-        }
+        public float Power
+        { get; set; }
+        public int NoOfFans
+        { get; set; }
 
         public PowerSupplyUnit()
         { }
@@ -297,39 +243,43 @@ namespace WebStore
             Price = float.Parse(item[3]);
             Stock = int.Parse(item[4]);
             Warranty = int.Parse(item[5]);
-            Putere = float.Parse(item[6]);
-            NumarVentilatoare = int.Parse(item[7]);
+            Power = float.Parse(item[6]);
+            NoOfFans = int.Parse(item[7]);
         }
 
         public void show(Label l)
         {
-            l.Text = Manufacturer + " " + Series + "<br/>Price: " + Price + " £<br/>Warranty " + Warranty + " months<br/>Power: " + Putere + "W<br/> " + NumarVentilatoare + " fans<br/><br/>";
-
+            l.Text = "";
+            display(l);
+            l.Text += "Power: " + Power + "<br/>";
+            displayPrice(l);
         }
 
-        public int Compare(PowerSupplyUnit p)
+        public int compareTo(Object m)
         {
-            if (Putere > p.Putere)
-                return 1;
-            else if (Putere < p.Putere) return 2;
-            else return 0;
+            if (m is PowerSupplyUnit)
+            {
+                PowerSupplyUnit c = (PowerSupplyUnit)m;
+                float b = c.Power * c.NoOfFans / c.Price;
+                float a = Power * NoOfFans / Price;
+                if (a < b)
+                    return -1;
+                else if (a > b) return 1;
+                else return 0;
+            }
+            else throw new HardwareException("Illegal Comparison");
         }
-    }
+
+    };
 
     public class RAM : Hardware//COD 5-
     {
-        private float memorie;
-        public float Memorie
-        {
-            get { return memorie; }
-            set { memorie = value; }
-        }
-        private string tipMemorie;
-        public string TipMemorie
-        {
-            get { return tipMemorie; }
-            set { tipMemorie = value; }
-        }
+        public float Memory
+        { get; set; }
+        public string MemoryType
+        { get; set; }
+        public int MemoryFrequency
+        { get; set; }
 
         public RAM()
         { }
@@ -341,67 +291,60 @@ namespace WebStore
             Price = float.Parse(item[3]);
             Stock = int.Parse(item[4]);
             Warranty = int.Parse(item[5]);
-            Memorie = float.Parse(item[6]);
-            TipMemorie = item[7];
+            Memory = float.Parse(item[6]);
+            MemoryFrequency = int.Parse(item[7]);
+            MemoryType = item[8];
         }
 
         public void show(Label l)
         {
-            l.Text = Manufacturer + " " + Series + "<br/>Price: " + Price + " £<br/>Warranty " + Warranty + " months<br/>Memory " + Memorie + "MB " + TipMemorie + "<br/><br/><br/><br/>";
+            l.Text = "";
+            display(l);
+            l.Text += "Memory: " + Memory + "MB " + MemoryType + "<br/>";
+            displayPrice(l);
         }
 
-        public bool compatibilitate(Motherboard placa)
+        public int compareTo(Object m)
         {
-            if (placa.MemorieSuportata == tipMemorie)
+            if (m is RAM)
+            {
+                RAM c = (RAM)m;
+                float b = c.Memory * c.MemoryFrequency / c.Price;
+                float a = Memory * MemoryFrequency / Price;
+                if (a < b)
+                    return -1;
+                else if (a > b) return 1;
+                else return 0;
+            }
+            else throw new HardwareException("Illegal Comparison");
+        }
+
+        public bool compatibility(Motherboard mother)
+        {
+            if (mother.SupportedMemory == MemoryType)
                 return true;
             return false;
         }
 
-        public int Compare(RAM p)
-        {
-            if (Memorie>p.Memorie)
-                return 1;
-            else if (Memorie < p.Memorie) return 2;
-            else return 0;
-        }
-    }
+    };
 
-    public class PlacaVideo : Hardware//COD 6-
+    public class GraphicsCard : Hardware//COD 6-
     {
-        private string nume;
-        private string Nume
-        {
-            get { return nume; }
-            set { nume = value; }
-        }
-        private float memorie;
-        public float Memorie
-        {
-            get { return memorie; }
-            set { memorie = value; }
-        }
-        private string tipMemorie;
-        public string TipMemorie
-        {
-            get { return tipMemorie; }
-            set { tipMemorie = value; }
-        }
-        private string slot;
+        public string Chipset
+        { get; set; }
+        public float Memory
+        { get; set; }
+        public string MemoryType
+        { get; set; }
         public string Slot
-        {
-            get { return slot; }
-            set { slot = value; }
-        }
-        private int directX;
+        { get; set; }
         public int DirectX
-        {
-            get { return directX; }
-            set { directX = value; }
-        }
+        { get; set; }
 
-        public PlacaVideo()
+
+        public GraphicsCard()
         { }
-        public PlacaVideo(string[] item)
+        public GraphicsCard(string[] item)
         {
             ID = int.Parse(item[0]);
             Manufacturer = item[1];
@@ -409,58 +352,57 @@ namespace WebStore
             Price = float.Parse(item[3]);
             Stock = int.Parse(item[4]);
             Warranty = int.Parse(item[5]);
-            Nume = item[6];
-            Memorie = float.Parse(item[7]);
-            TipMemorie = item[8];
+            Chipset = item[6];
+            Memory = float.Parse(item[7]);
+            MemoryType = item[8];
             Slot = item[9];
             DirectX = int.Parse(item[10]);
         }
 
         public void show(Label l)
         {
-            l.Text = Manufacturer + " " + Nume + " " + Series + "<br/>Price: " + Price + " £<br/>Warranty " + Warranty + " months<br/>Memory: " + Memorie + "MB, " + TipMemorie + "<br/>Slot: " + Slot + "<br/>DirectX version: " + DirectX + "<br/><br/>";
+            l.Text = "";
+            display(l);
+            l.Text += "Chipset: " + Chipset + "<br/>Memory: " + Memory + "MB " + MemoryType + "<br/>Slot: " + Slot + "<br/>DirectX version: " + DirectX + "<br/><br/>";
+            displayPrice(l);
         }
 
-        public bool compatibilitate(Motherboard placa)
+        public int compareTo(Object m)
         {
-            if (placa.SlotVideo == Slot)
+            if (m is GraphicsCard)
+            {
+                GraphicsCard c = (GraphicsCard)m;
+                float b = c.Memory * c.DirectX / c.Price;
+                float a = Memory * DirectX / Price;
+                if (a < b)
+                    return -1;
+                else if (a > b) return 1;
+                else return 0;
+            }
+            else throw new HardwareException("Illegal Comparison");
+        }
+        
+        public bool compatibility(Motherboard mother)
+        {
+            if (mother.SocketGPU == Slot)
                 return true;
             return false;
         }
 
-        public int Compare(PlacaVideo p)
-        {
-            if (Memorie > p.Memorie)
-                return 1;
-            else if (Memorie < p.Memorie)
-                return 2;
-            else
-            {
-                if (DirectX > p.DirectX)
-                    return 1;
-                else return 2;
-            }
-        }
     };
 
-    public class DVDPlayer : Hardware//COD 7-
+    public class Storage : Hardware//COD 8-
     {
-        private float vitezaCitire;
-        public float VitezaCitire
-        {
-            get { return vitezaCitire; }
-            set { vitezaCitire = value; }
-        }
-        private float vitezaScriere;
-        public float VitezaScriere
-        {
-            get { return vitezaScriere; }
-            set { vitezaScriere = value; }
-        }
+        public string Type
+        { get; set; }
+        public int Size
+        { get; set; }
+        public float Speed
+        { get; set; }
 
-        public DVDPlayer()
+        public Storage()
         { }
-        public DVDPlayer(string[] item)
+        public Storage(string[] item)
         {
             ID = int.Parse(item[0]);
             Manufacturer = item[1];
@@ -468,74 +410,34 @@ namespace WebStore
             Price = float.Parse(item[3]);
             Stock = int.Parse(item[4]);
             Warranty = int.Parse(item[5]);
-            VitezaCitire = float.Parse(item[6]);
-            VitezaScriere = float.Parse(item[7]);
+            Type = item[6];
+            Size = int.Parse(item[7]);
+            Speed = float.Parse(item[8]);
         }
 
         public void show(Label l)
         {
-            l.Text = Manufacturer + " " + Series + "<br/>Price: " + Price + " £<br/>Warranty " + Warranty + " months<br/>Input speed: " + VitezaCitire + "kB/sec<br/>Output speed: " + VitezaScriere + "kB/sec<br/><br/>";
-        }
-        public int Compare(DVDPlayer p)
-        {
-            if (VitezaCitire > p.VitezaCitire)
-                return 1;
-            else if (VitezaCitire < p.VitezaCitire) return 2;
-
-            return 0;
-        }
-    }
-
-    public class Stocare : Hardware//COD 8-
-    {
-        private string tip;
-        public string Tip
-        {
-            get { return tip; }
-            set { tip = value; }
-        }
-        private int capacitate;
-        public int Capacitate
-        {
-            get { return capacitate; }
-            set { capacitate = value; }
-        }
-        private float vitezaTransfer;
-        public float VitezaTransfer
-        {
-            get { return vitezaTransfer; }
-            set { vitezaTransfer = value; }
+            l.Text = "";
+            display(l);
+            l.Text += "Type: " + Type + "<br/>Size:" + Size + "GB<br/>Speed: " + Speed + "<br/><br/>";
+            displayPrice(l);
         }
 
-        public Stocare()
-        { }
-        public Stocare(string[] item)
+        public int compareTo(Object m)
         {
-            ID = int.Parse(item[0]);
-            Manufacturer = item[1];
-            Series = item[2];
-            Price = float.Parse(item[3]);
-            Stock = int.Parse(item[4]);
-            Warranty = int.Parse(item[5]);
-            Tip = item[6];
-            Capacitate = int.Parse(item[7]);
-            VitezaTransfer = float.Parse(item[8]);
+            if (m is Storage)
+            {
+                Storage c = (Storage)m;
+                float b = c.Size * c.Speed / c.Price;
+                float a = Size * Speed / Price;
+                if (a < b)
+                    return -1;
+                else if (a > b) return 1;
+                else return 0;
+            }
+            else throw new HardwareException("Illegal Comparison");
         }
 
-        public void show(Label l)
-        {
-            l.Text = Manufacturer + " " + Series + " " + Tip + "<br/>Price: " + Price + " £<br/>Warranty " + Warranty + " months<br/>Size:" + Capacitate + "GB<br/>Speed: " + VitezaTransfer + "<br/><br/>";
-        }
-
-        public int Compare(Stocare p)
-        {
-            if (Capacitate > p.Capacitate)
-                return 1;
-            else if (Capacitate < p.Capacitate) return 2;
-
-            return 0;
-        }
-    }
-
+    };
 
 }

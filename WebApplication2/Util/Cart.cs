@@ -81,7 +81,7 @@ namespace WebStore
         private void getInfo(int numberOfAttributes, string tableName, string[] objectData, int id)
         {
             AccessDataSource s;
-            s = new AccessDataSource("Z:\\info\\PROJECTS\\trinity_web\\WebApplication2\\baza.mdb", "SELECT * FROM [" + tableName + "] WHERE [ID]=" + id.ToString());
+            s = new AccessDataSource("baza.mdb", "SELECT * FROM [" + tableName + "] WHERE [ID]=" + id.ToString());
             DataView dv = new DataView();
             dv = (DataView)s.Select(DataSourceSelectArguments.Empty);
             DataTable dt = dv.ToTable();

@@ -10,7 +10,7 @@ namespace WebStore
 {
     public partial class graphics : System.Web.UI.Page
     {
-        PlacaVideo[] p = new PlacaVideo[10];
+        GraphicsCard[] p = new GraphicsCard[10];
         Cart currentCart;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -35,7 +35,7 @@ namespace WebStore
                     string[] item = new string[15];
                     for (int j = 0; j < dr.FieldCount; j++)
                         item[j] = dr[j].ToString();
-                    p[i] = new PlacaVideo(item);
+                    p[i] = new GraphicsCard(item);
 
                     Label l = new Label();
                     l = new Label();

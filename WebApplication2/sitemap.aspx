@@ -38,14 +38,13 @@
         <li><a href="ram.aspx">Memory</a></li>                    
         <li><a href="audio.aspx">Sound Cards</a></li>                   
         <li><a href="hdd.aspx">Hard drives</a></li>                   
-        <li><a href="dvd.aspx">DVD player</a></li>                    
         <li><a href="ups.aspx">Power supplies</a></li>                    
     </ul>
     </li>
     <li>Services
     <ul type="circle">
                     <li><a href="_cart.aspx">Shopping cart</a></li>
-                    <li><a href="_Compare.aspx">Compare</a>     </li>                              
+                    <li><a href="_compare.aspx">Compare</a>     </li>                              
                     <li><a href="_configurator.aspx">Configure</a></li>
     </ul>
     </li>

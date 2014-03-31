@@ -4226,16 +4226,16 @@ try {
 
 var sortOrder;
 
-if ( document.documentElement.compareDocumentPosition ) {
+if ( document.documentElement.CompareDocumentPosition ) {
 	sortOrder = function( a, b ) {
-		if ( !a.compareDocumentPosition || !b.compareDocumentPosition ) {
+		if ( !a.CompareDocumentPosition || !b.CompareDocumentPosition ) {
 			if ( a == b ) {
 				hasDuplicate = true;
 			}
-			return a.compareDocumentPosition ? -1 : 1;
+			return a.CompareDocumentPosition ? -1 : 1;
 		}
 
-		var ret = a.compareDocumentPosition(b) & 4 ? -1 : a === b ? 0 : 1;
+		var ret = a.CompareDocumentPosition(b) & 4 ? -1 : a === b ? 0 : 1;
 		if ( ret === 0 ) {
 			hasDuplicate = true;
 		}
@@ -4270,7 +4270,7 @@ if ( document.documentElement.compareDocumentPosition ) {
 		aRange.setEnd(a, 0);
 		bRange.setStart(b, 0);
 		bRange.setEnd(b, 0);
-		var ret = aRange.compareBoundaryPoints(Range.START_TO_END, bRange);
+		var ret = aRange.CompareBoundaryPoints(Range.START_TO_END, bRange);
 		if ( ret === 0 ) {
 			hasDuplicate = true;
 		}
@@ -4504,7 +4504,7 @@ function dirCheck( dir, cur, doneName, checkSet, nodeCheck, isXML ) {
 	}
 }
 
-var contains = document.compareDocumentPosition ? function(a, b){
+var contains = document.CompareDocumentPosition ? function(a, b){
 	///	<summary>
 	///		Check to see if a DOM node is within another DOM node.
 	///	</summary>
@@ -4516,7 +4516,7 @@ var contains = document.compareDocumentPosition ? function(a, b){
 	///	</param>
 	///	<returns type="Boolean" />
 
-	return a.compareDocumentPosition(b) & 16;
+	return a.CompareDocumentPosition(b) & 16;
 } : function(a, b){
 	///	<summary>
 	///		Check to see if a DOM node is within another DOM node.

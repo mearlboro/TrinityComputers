@@ -80,13 +80,12 @@
                     <br />
                     <br />
                     <h1>Products</h1>
-                    <a href="../mother.aspx">Motherboards</a>
+                    <a href="mother.aspx">Motherboards</a>
                     <a href="cpu.aspx">CPUs</a>
                     <a href="graphics.aspx">Graphics Cards</a>
                     <a href="ram.aspx">Memory</a>
                     <a href="sound.aspx">Sound Cards</a>
                     <a href="hdd.aspx">Hard Drives</a>
-                    <a href="dvd.aspx">DVD player</a>
                     <a href="power.aspx">Power Supplies</a>
                         <br />
                     <h1>Services</h1>

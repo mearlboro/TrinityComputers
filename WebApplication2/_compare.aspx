@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="_Compare.aspx.cs" Inherits="WebStore._Compare" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="_compare.aspx.cs" Inherits="WebStore._compare" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -51,7 +51,7 @@
   
 
     <asp:Label ID="Label1" runat="server" 
-        Text="Nu se pot Compare decat piesele de acelasi tip"></asp:Label>
+        Text="Comparison error! No hardware to compare/You cannot compare hardware of different types!"></asp:Label>
   
 
 </div>
